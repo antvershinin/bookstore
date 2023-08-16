@@ -1,10 +1,10 @@
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import Main from './Main';
 const App = () => {
   return (
-    <View style={styles.global}>
+    <ScrollView style={styles.global}>
       <Main />
-    </View>
+    </ScrollView>
   );
 };
 

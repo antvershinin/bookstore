@@ -1,25 +1,20 @@
 import React from 'react';
 import {styles} from './OvalButton.styles';
-import {Pressable, Text} from 'react-native';
+import {Pressable, Text, TextStyle, ViewStyle} from 'react-native';
 
 type Props = {
-  styles: {
-    width: number;
-    height: number;
-    backgroundColor?: `#${string}`;
-  };
-  text_style: {
-    fontSize: number;
-  };
+  styles?: ViewStyle;
+  onPress?: (value: any) => void;
+  text_style?: TextStyle;
+
   text: string;
-  onPress?: () => void;
 };
 
 const OvalButton: React.FC<Props> = props => {
   return (
     <Pressable
-      style={{...styles.oval_button, ...props.styles}}
-      onPress={props.onPress}>
+      onPress={props.onPress}
+      style={{...styles.oval_button, ...props.styles}}>
       <Text style={styles.button_text}>{props.text}</Text>
     </Pressable>
   );
