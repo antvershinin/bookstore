@@ -1,4 +1,4 @@
-import {Image, Text, View} from 'react-native';
+import {Image, Text, View, Alert} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import Input from '../../components/input/Input';
 import OvalButton from '../../components/buttons/oval_button/OvalButton';
@@ -10,9 +10,9 @@ interface Login {
   password_confirm?: string;
 }
 
-type Props = {
-  hasAccount: boolean;
-};
+type Props = {};
+
+const hasAccount = false;
 
 const LoginSignupLayout: React.FC<Props> = props => {
   const {
@@ -20,13 +20,17 @@ const LoginSignupLayout: React.FC<Props> = props => {
     handleSubmit,
     formState: {errors},
   } = useForm<Login>();
-  const onSubmit = (data: Login) => console.log(data);
+
+  const onSubmit = (data: Login) => {
+    if (!hasAccount) {
+      if (data.password !== data.password_confirm)
+        Alert.alert('Password replay must be equal to Password');
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.form_title}>
-        {props.hasAccount ? 'Log In' : 'Sign Up'}
-      </Text>
+      <Text style={styles.form_title}>{hasAccount ? 'Log In' : 'Sign Up'}</Text>
       <View style={styles.input_container}>
         <Controller
           name="email"
@@ -68,7 +72,7 @@ const LoginSignupLayout: React.FC<Props> = props => {
 
         <Text style={styles.form_text}>Enter your password</Text>
       </View>
-      {props.hasAccount ? null : (
+      {hasAccount ? null : (
         <View style={styles.input_container}>
           <Controller
             rules={{required: true, minLength: 8, maxLength: 15}}
@@ -90,7 +94,7 @@ const LoginSignupLayout: React.FC<Props> = props => {
 
       <OvalButton
         styles={styles.form_button}
-        text={`${props.hasAccount ? 'Log In' : 'Sign Up'}`}
+        text={`${hasAccount ? 'Log In' : 'Sign Up'}`}
         onPress={handleSubmit(onSubmit)}
       />
       <Image source={require('./images/login_signup_image.png')} />
