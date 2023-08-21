@@ -12,10 +12,11 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
-  // extraReducers:(builder) => {
-  //   builder.addCase()
-  // },
+  reducers: {
+    setUser: (state, action: PayloadAction<string>) => {
+      state.user = action.payload;
+    },
+  },
 });
 
 export const userSliceActions = userSlice.actions;

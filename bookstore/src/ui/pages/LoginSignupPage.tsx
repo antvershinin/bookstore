@@ -5,7 +5,7 @@ type Props = {};
 const LoginPage: React.FC = props => {
   return (
     <>
-      <LoginSignupLayout hasAccount={true} />
+      <LoginSignupLayout />
     </>
   );
 };

@@ -1,10 +1,11 @@
 import {Image, Text, View} from 'react-native';
 import {styles} from './AuthBanner.styles';
 import OvalButton from '../../components/buttons/oval_button/OvalButton';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-type Props = {};
+type Props = NativeStackScreenProps<RootStackParamList>;
 
-const AuthBanner: React.FC<Props> = props => {
+const AuthBanner: React.FC<Props> = ({navigation}: Props) => {
   return (
     <View style={styles.container}>
       <Image
@@ -17,6 +18,7 @@ const AuthBanner: React.FC<Props> = props => {
           Authorize now and discover the fabulous world of books
         </Text>
         <OvalButton
+          onPress={() => navigation.navigate('SignIn', {hasAccoutn: false})}
           text="Log In/ Sign Up"
           styles={styles.text_container_button}
         />

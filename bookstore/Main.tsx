@@ -1,17 +1,15 @@
-import {StyleSheet, Text, View} from 'react-native';
-import Footer from './src/ui/containers/footer/Footer';
-import Header from './src/ui/containers/header/Header';
+import {StyleSheet} from 'react-native';
+
 import LoginPage from './src/ui/pages/LoginSignupPage';
+import HomeScreen from './src/ui/pages/HomeScreen';
+import {Stack} from './src/navigation/Stack';
 
 const Main = () => {
   return (
-    <>
-      <View style={styles.container}>
-        <Header />
-        <LoginPage />
-      </View>
-      <Footer />
-    </>
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="SignIn" component={LoginPage} />
+    </Stack.Navigator>
   );
 };
 

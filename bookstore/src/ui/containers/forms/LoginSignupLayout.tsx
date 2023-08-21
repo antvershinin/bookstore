@@ -3,6 +3,9 @@ import {useForm, Controller} from 'react-hook-form';
 import Input from '../../components/input/Input';
 import OvalButton from '../../components/buttons/oval_button/OvalButton';
 import {styles} from './Layout.styles';
+import {userRegister, userSignin} from '../../../api/authAPI';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useDispatch} from 'react-redux';
 
 interface Login {
   email: string;
@@ -12,19 +15,35 @@ interface Login {
 
 type Props = {};
 
-const hasAccount = false;
+const hasAccount = true;
 
 const LoginSignupLayout: React.FC<Props> = props => {
+  const dispatch = useDispatch();
   const {
     control,
     handleSubmit,
     formState: {errors},
   } = useForm<Login>();
 
-  const onSubmit = (data: Login) => {
+  const onSubmit = async (data: Login) => {
     if (!hasAccount) {
       if (data.password !== data.password_confirm)
         Alert.alert('Password replay must be equal to Password');
+      try {
+        const response = await userRegister(data.email, data.password);
+        AsyncStorage.setItem('access_token', response?.access_token!);
+        AsyncStorage.setItem('refresh_token', response?.refresh_token!);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    try {
+      const response = await userSignin(data.email, data.password);
+      AsyncStorage.setItem('access_token', response?.access_token!);
+      AsyncStorage.setItem('refresh_token', response?.refresh_token!);
+      console.log(response?.user);
+    } catch (err) {
+      console.log(err);
     }
   };
 
