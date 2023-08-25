@@ -21,4 +21,9 @@ export const styles = StyleSheet.create({
     minHeight: 40,
     minWidth: 135,
   },
+  user_dashboard: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 135,
+  },
 });

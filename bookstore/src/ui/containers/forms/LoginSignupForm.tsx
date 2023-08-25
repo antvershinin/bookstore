@@ -17,7 +17,7 @@ type Props = {};
 
 const hasAccount = true;
 
-const LoginSignupLayout: React.FC<Props> = props => {
+const LoginSignupForm: React.FC<Props> = props => {
   const dispatch = useDispatch();
   const {
     control,
@@ -121,4 +121,4 @@ const LoginSignupLayout: React.FC<Props> = props => {
   );
 };
 
-export default LoginSignupLayout;
+export default LoginSignupForm;
