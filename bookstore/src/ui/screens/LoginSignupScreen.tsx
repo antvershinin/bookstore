@@ -1,5 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import LoginSignupForm from '../containers/forms/LoginSignupForm';
+import LoginSignupForm from '../containers/forms/login_signup/LoginSignupForm';
 
 import Layout from './Layout';
 

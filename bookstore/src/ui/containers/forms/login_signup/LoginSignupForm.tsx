@@ -1,9 +1,9 @@
 import {Image, Text, View, Alert} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
-import Input from '../../components/input/Input';
-import OvalButton from '../../components/buttons/oval_button/OvalButton';
-import {styles} from './Layout.styles';
-import {userRegister, userSignin} from '../../../api/authAPI';
+import Input from '../../../components/input/Input';
+import OvalButton from '../../../components/buttons/oval_button/OvalButton';
+import {styles} from './LoginSignup.styles';
+import {userRegister, userSignin} from '../../../../api/authAPI';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
 
@@ -65,7 +65,7 @@ const LoginSignupForm: React.FC<Props> = props => {
             <Input
               type="email"
               onChangeText={onChange}
-              logo_source={require('./images/mail_logo.png')}
+              logo_source={require('../images/mail_logo.png')}
               placeholder="Email"
               value={value}
             />
@@ -81,7 +81,7 @@ const LoginSignupForm: React.FC<Props> = props => {
           render={({field: {onChange, value}}) => (
             <Input
               secure
-              logo_source={require('./images/hide_logo.png')}
+              logo_source={require('../images/hide_logo.png')}
               placeholder="Password"
               onChangeText={onChange}
               value={value}
@@ -100,7 +100,7 @@ const LoginSignupForm: React.FC<Props> = props => {
             render={({field: {onChange, value}}) => (
               <Input
                 secure
-                logo_source={require('./images/hide_logo.png')}
+                logo_source={require('../images/hide_logo.png')}
                 placeholder="Password replay"
                 onChangeText={onChange}
                 value={value}
@@ -116,7 +116,7 @@ const LoginSignupForm: React.FC<Props> = props => {
         text={`${hasAccount ? 'Log In' : 'Sign Up'}`}
         onPress={handleSubmit(onSubmit)}
       />
-      <Image source={require('./images/login_signup_image.png')} />
+      <Image source={require('../images/login_signup_image.png')} />
     </View>
   );
 };

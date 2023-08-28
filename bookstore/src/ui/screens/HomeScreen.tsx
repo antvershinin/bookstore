@@ -3,6 +3,7 @@ import BookBanner from '../containers/book_banner/BookBanner';
 import AuthBanner from '../containers/auth_banner/AuthBanner';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Layout from './Layout';
+import {userState} from '../../redux/selectors';
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
@@ -11,7 +12,9 @@ const HomeScreen = ({navigation, route}: Props) => {
     <Layout nav={{navigation, route}}>
       <>
         <BookBanner />
-        <AuthBanner navigation={navigation} route={route} />
+        {!userState ? (
+          <AuthBanner navigation={navigation} route={route} />
+        ) : null}
       </>
     </Layout>
   );

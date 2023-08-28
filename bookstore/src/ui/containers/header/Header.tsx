@@ -4,10 +4,9 @@ import OvalButton from '../../components/buttons/oval_button/OvalButton';
 import Input from '../../components/input/Input';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import RoundButton from '../../components/buttons/round_button/RoundButton';
+import {userState} from '../../../redux/selectors';
 
 type Props = NativeStackScreenProps<RootStackParamList>;
-
-const logged = false;
 
 const Header: React.FC<Props> = ({navigation, route}) => {
   return (
@@ -18,14 +17,7 @@ const Header: React.FC<Props> = ({navigation, route}) => {
           source={require('./images/header_logo.png')}
         />
         <Text style={styles.header_text}>Catalog</Text>
-        {logged ? (
-          <OvalButton
-            text="Log In/ Sign Up"
-            text_style={{fontSize: 12}}
-            styles={styles.header_button}
-            onPress={() => navigation.navigate('SignIn', {hasAccoutn: true})}
-          />
-        ) : (
+        {userState ? (
           <View style={styles.user_dashboard}>
             <RoundButton logo_source={require('./images/cart_logo.png')} />
             <RoundButton logo_source={require('./images/heart_logo.png')} />
@@ -34,6 +26,13 @@ const Header: React.FC<Props> = ({navigation, route}) => {
               onPress={() => navigation.navigate('Profile')}
             />
           </View>
+        ) : (
+          <OvalButton
+            text="Log In/ Sign Up"
+            text_style={{fontSize: 12}}
+            styles={styles.header_button}
+            onPress={() => navigation.navigate('SignIn', {hasAccoutn: true})}
+          />
         )}
       </View>
       <View>

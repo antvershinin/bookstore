@@ -28,6 +28,7 @@ const Input: React.FC<Props> = props => {
     <View style={{...styles.input, ...props.styles}}>
       <Image style={styles.input_logo} source={props.logo_source} />
       <TextInput
+        defaultValue={props.value}
         placeholderTextColor={'#B9BAC3'}
         secureTextEntry={props.secure}
         inputMode={props.type}

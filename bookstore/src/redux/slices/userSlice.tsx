@@ -6,7 +6,7 @@ type UserType = {
 };
 
 const initialState = {
-  user: '',
+  user: 'se',
 };
 
 const userSlice = createSlice({
