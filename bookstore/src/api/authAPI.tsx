@@ -10,5 +10,5 @@ export const userRegister = async (email: string, password: string) => {
 
 export const userSignin = async (email: string, password: string) => {
   const {data} = await supabase.auth.signInWithPassword({email, password});
-  return data.session;
+  return data;
 };

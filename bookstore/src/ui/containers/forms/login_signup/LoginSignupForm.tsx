@@ -6,13 +6,14 @@ import {styles} from './LoginSignup.styles';
 import {userRegister, userSignin} from '../../../../api/authAPI';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
+import {userSliceActions} from '../../../../redux/slices/userSlice';
+import {userState} from '../../../../redux/selectors';
 
 interface Login {
   email: string;
   password: string;
   password_confirm?: string;
 }
-
 type Props = {};
 
 const hasAccount = true;
@@ -39,9 +40,12 @@ const LoginSignupForm: React.FC<Props> = props => {
     }
     try {
       const response = await userSignin(data.email, data.password);
-      AsyncStorage.setItem('access_token', response?.access_token!);
-      AsyncStorage.setItem('refresh_token', response?.refresh_token!);
-      console.log(response?.user);
+      const {session, user} = response;
+      console.log(user?.email);
+      dispatch(userSliceActions.setUser(user!.email!));
+      console.log(userState?.email);
+      // AsyncStorage.setItem('access_token', response?.access_token!);
+      // AsyncStorage.setItem('refresh_token', response?.refresh_token!);
     } catch (err) {
       console.log(err);
     }
