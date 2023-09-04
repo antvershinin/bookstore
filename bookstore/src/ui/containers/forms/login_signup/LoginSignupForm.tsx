@@ -7,18 +7,18 @@ import {userRegister, userSignin} from '../../../../api/authAPI';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
 import {userSliceActions} from '../../../../redux/slices/userSlice';
-import {userState} from '../../../../redux/selectors';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 interface Login {
   email: string;
   password: string;
   password_confirm?: string;
 }
-type Props = {};
+type Props = NativeStackScreenProps<RootStackParamList>;
 
 const hasAccount = true;
 
-const LoginSignupForm: React.FC<Props> = props => {
+const LoginSignupForm: React.FC<Props> = ({navigation, route}) => {
   const dispatch = useDispatch();
   const {
     control,
@@ -41,9 +41,9 @@ const LoginSignupForm: React.FC<Props> = props => {
     try {
       const response = await userSignin(data.email, data.password);
       const {session, user} = response;
-      console.log(user?.email);
+
       dispatch(userSliceActions.setUser(user!.email!));
-      console.log(userState?.email);
+      navigation.navigate('Home');
       // AsyncStorage.setItem('access_token', response?.access_token!);
       // AsyncStorage.setItem('refresh_token', response?.refresh_token!);
     } catch (err) {

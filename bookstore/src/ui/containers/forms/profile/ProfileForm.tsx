@@ -3,10 +3,12 @@ import {Image, ScrollView, Text, View} from 'react-native';
 import {styles} from './ProfileForm.styles';
 import RoundButton from '../../../components/buttons/round_button/RoundButton';
 import Input from '../../../components/input/Input';
-
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../../redux/store';
 type Props = {};
 
 const ProfileForm = () => {
+  const userState = useSelector((state: RootState) => state.user.user);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.avatar_container}>
@@ -26,13 +28,13 @@ const ProfileForm = () => {
         </View>
         <Input
           placeholder="Your name"
-          value="Tony Lemony"
+          value={userState?.name}
           onChangeText={() => {}}
           logo_source={require('../images/profile_logo.png')}
         />
         <Input
           placeholder="Your email"
-          value="test@test.ru"
+          value={userState?.email}
           onChangeText={() => {}}
           logo_source={require('../images/mail_logo.png')}
         />

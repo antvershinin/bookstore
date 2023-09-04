@@ -9,7 +9,7 @@ const LoginSignupScreen = ({navigation, route}: Props) => {
   return (
     <Layout nav={{navigation, route}}>
       <>
-        <LoginSignupForm />
+        <LoginSignupForm navigation={navigation} route={route} />
       </>
     </Layout>
   );

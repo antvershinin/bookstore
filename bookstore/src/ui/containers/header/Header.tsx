@@ -4,11 +4,14 @@ import OvalButton from '../../components/buttons/oval_button/OvalButton';
 import Input from '../../components/input/Input';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import RoundButton from '../../components/buttons/round_button/RoundButton';
-import {userState} from '../../../redux/selectors';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../redux/store';
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
 const Header: React.FC<Props> = ({navigation, route}) => {
+  const userState = useSelector((state: RootState) => state.user.user);
+
   return (
     <>
       <View style={styles.header_container}>
